@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
+
+.theme-dark {
+  --dark-text: #292929;
+  --light-text: #f9f8f8;
+  --dark-background: #2f4550;
+  --light-background: #586f7c;
+  --accent: #b8dbd9;
+  --button-border: #b8dbd9;
+}
+
+.theme-light {
+  --dark-text: #5e4b56;
+  --light-text: #5e4b56;
+  --dark-background: #dbe7e4;
+  --light-background: #eddcd2;
+  --accent: #dbe7e4;
+  --button-border: #5e4b56;
+}
+
+#root {
+  background-color: var(--dark-background) !important;
+  color: var(--dark-text);
+  margin: 0;
+}
+
+.main {
+  min-height: 90vh;
+  display: flex;
+  padding: 0 2rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.footer {
+  display: flex;
+  padding: 2rem 0;
+  flex-direction: column;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 500px;
+  height: 500px;
+}
+
+.input {
+  width: 200px;
+  height: 100%;
+  padding: 1%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+
+.header {
+  font-size: 2rem;
+  margin: 2rem 0;
+  font-family: 'Poller One', cursive;
+}
+
+.description {
+  line-height: 1;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: var(--light-text);
+}
+
+.button {
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 20px;
+  /* width: 200px; */
+  cursor: pointer;
+  margin-right: 2%;
+  background-size: 300% auto;
+  transition: 0.5s;
+  font-family: 'Poller One', cursive;
+}
+.button:hover {
+  box-shadow: 0 0 0.5px 0.5px var(--button-border);
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+.button:active {
+  transform: translateY(5px);
+}
+
+.proposalCard {
+  width: fit-content;
+  margin-top: 0.25rem;
+  border: black 2px solid;
+  flex: 1;
+  flex-direction: column;
+}
+
+.header,
+.button,
+.linkText,
+.footerText,
+.styledNumber,
+.styledText,
+.progressBar {
+  background-image: linear-gradient(
+    to right,
+    #3C2F66 0%,
+    #e13831 41%,
+    #3C2F66 90%
+  );
+}
+.header,
+.linkText,
+.footerText,
+.styledNumber,
+.styledText {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.linkText {
+  font-weight: 700;
+}
+
+.twitterLogo {
+  width: 25px;
+  height: 25px;
+}
+
+.inputDiv {
+  width: 200px;
+  height: 100%;
+  padding: 1%;
+  margin: 2%;
+  border: lightslategray;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+.select {
+  border-radius: 4px;
+  font-size: 15px;
+  padding: 5px;
+  width: 175px;
+  cursor: pointer;
+  margin: 2%;
+}
+
+.button1 {
+  border-radius: 4px;
+  background-color: #3C2F66;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 5px;
+  width: 100px;
+  cursor: pointer;
+  margin: 2%;
+}
+
+.button2 {
+  border-radius: 4px;
+  background-color: #e13831;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 5px;
+  width: 100px;
+  cursor: pointer;
+  margin: 2%;
+}
+
+@media (max-width: 1000px) {
+  .main {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .image {
+    width: 300px;
+    height: 300px;
+    padding-left: 0;
+  }
+}
+@media (max-width: 500px) {
+  .main {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .image {
+    width: 200px;
+    height: 200px;
+    padding-left: 0;
+    padding-top: 2rem;
+  }
+}
