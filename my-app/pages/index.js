@@ -264,7 +264,7 @@ export default function Home() {
       // Get the provider from web3Modal, which in our case is MetaMask
       // When used for the first time, it prompts the user to connect their wallet
       await getProviderOrSigner();
-      setWalletConnected(true);
+      // setWalletConnected(true);
     } catch (err) {
       console.error(err);
     }
@@ -299,6 +299,7 @@ export default function Home() {
       const signer = web3Provider.getSigner();
       return signer;
     }
+    setWalletConnected(true);
     return web3Provider;
   };
 
@@ -324,15 +325,6 @@ export default function Home() {
       renderButton: Returns a button based on the state of the dapp
   */
   const renderButton = () => {
-    // If wallet is not connected, return a button which allows them to connect their wllet
-    if (!walletConnected) {
-      return (
-        <button onClick={connectWallet} className={styles.button}>
-          Connect your wallet
-        </button>
-      );
-    }
-
     // If we are currently waiting for something, return a loading button
     if (loading) {
       return <button className={styles.button}>Loading...</button>;
@@ -345,11 +337,20 @@ export default function Home() {
             You have:
             <br />
             {/* Convert the BigNumber to string using the formatEther function from ethers.js */}
-            {utils.formatEther(hetBalance)} Halftone Eth Tokens
+            <span className={styles.styledNumber}>
+              <b>{utils.formatEther(hetBalance)}</b>
+            </span>{' '}
+            Halftone Eth Tokens
             <br />
-            {utils.formatEther(ethBalance)} Ether
+            <span className={styles.styledNumber}>
+              <b>{utils.formatEther(ethBalance)}</b>
+            </span>{' '}
+            Ether
             <br />
-            {utils.formatEther(lpBalance)} Halftone Eth LP tokens
+            <span className={styles.styledNumber}>
+              <b> {utils.formatEther(lpBalance)}</b>
+            </span>{' '}
+            Halftone Eth LP tokens
           </div>
           <div>
             {/* If reserved HET is zero, render the state for liquidity zero where we ask the user
@@ -410,7 +411,7 @@ export default function Home() {
             <div>
               <input
                 type="number"
-                placeholder="Amount of LP Tokens"
+                placeholder="Amount of HET LP Tokens"
                 onChange={async (e) => {
                   setRemoveLPTokens(e.target.value || '0');
                   // Calculate the amount of Ether and HET tokens that the user would receive
@@ -484,35 +485,77 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Halftone Eth</title>
+        <title>HalftoneEth &#60;&#62; Ether Decentralized Exchange</title>
         <meta name="description" content="Exchange-Dapp" />
         <link rel="icon" href="/halftone-ethx50.ico" />
       </Head>
       <div className={styles.main}>
         <div>
-          <h1 className={styles.header}>Halftone-Eth Decentralized Exchange</h1>
+          <h1 className={styles.header}>
+            Halftone-Eth &#60;&#62; Ether Decentralized Exchange
+          </h1>
           <div className={styles.description}>
-            Exchange Ethereum &#60;&#62; Halftone Eth Tokens
+            This is a a DeFi Exchange DApp page to Exchange{' '}
+            <span className={styles.styledNumber}>Ethereum</span> &#60;&#62;{' '}
+            <span className={styles.styledNumber}>Halftone-Eth Tokens</span>{' '}
           </div>
-          <div>
-            <button
-              className={styles.button}
-              onClick={() => {
-                setLiquidityTab(!liquidityTab);
-              }}
+          <div className={styles.description}>
+            Go to the links below first:
+            <br />
+            <a
+              href="https://halftone-ethereum.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
             >
-              Liquidity
-            </button>
-            <button
-              className={styles.button}
-              onClick={() => {
-                setLiquidityTab(false);
-              }}
+              <span className={styles.linkText}>NFT</span>
+            </a>
+            <br />
+            <a
+              href="https://halftone-ethereum-token-ico.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
             >
-              Swap
-            </button>
+              <span className={styles.linkText}>HET Token</span>
+            </a>
+            <br />
+            <a
+              href="https://halftone-ethereum-dao.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
+            >
+              <span className={styles.linkText}>DAO</span>
+            </a>
           </div>
-          {renderButton()}
+          {!walletConnected ? (
+            <button onClick={connectWallet} className={styles.button}>
+              Connect your wallet
+            </button>
+          ) : (
+            <>
+              <div>
+                <button
+                  className={styles.button}
+                  onClick={() => {
+                    setLiquidityTab(!liquidityTab);
+                  }}
+                >
+                  Liquidity
+                </button>
+                <button
+                  className={styles.button}
+                  onClick={() => {
+                    setLiquidityTab(false);
+                  }}
+                >
+                  Swap
+                </button>
+              </div>
+              {renderButton()}
+            </>
+          )}
         </div>
         <div>
           <img className={styles.image} src="./00.svg" />
