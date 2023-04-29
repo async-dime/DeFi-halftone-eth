@@ -65,7 +65,7 @@ export default function Home() {
   // walletConnected keep track of whether the user's wallet is connected or not
   const [walletConnected, setWalletConnected] = useState(false);
 
-  const TWITTER_HANDLE = 'p0tat0H8';
+  const TWITTER_HANDLE = 'async_dime';
   const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
   /**
